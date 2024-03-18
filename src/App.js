@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import ThemeToggle from "./component/themeToggle";
+import Content from "./component/content";
+import InputBox from "./component/inputBox";
+import "./App.css";
+
+export const ThemeContext = React.createContext();
 
 function App() {
+  const [theme, setTheme] = useState("light");
+  const [isToggle, setIsToggle] = useState(false);
+
+  const values = {
+    theme,
+    setTheme,
+    isToggle,
+    setIsToggle,
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeContext.Provider value={values}>
+      <div className="App">
+        {/* <CustomForm /> */}
+
+        <ThemeToggle />
+        <Content />
+
+        {/* <InputBox /> */}
+      </div>
+    </ThemeContext.Provider>
   );
 }
 
